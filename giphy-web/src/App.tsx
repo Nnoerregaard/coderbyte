@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ResultSection from './image-explorer/ResultSection';
+import SearchField from './query-section/SearchField'
 import axios from 'axios'
 
 function App() {
   const [results, setResults] = useState([]);
+  const [error, setError] = useState(); 
 
   useEffect(() => {
-    // TODO: Move out into configuration, and lift state when we get to the query section
+    // TODO: Move out into configuration
     axios.get('https://api.giphy.com/v1/stickers/search', 
       { params: { q: "cat", limit: 3, rating: "g", api_key: "1bkG7ky5cmw5SLyvNfElcR1iYVzs38Zq" }}).then((result: any) => {
         console.log(result)
@@ -16,12 +18,15 @@ function App() {
         setResults(resultArray)
       console.log(result)
     }).catch(error => {
-      console.log(error)
+      setError(error)
     })
   }, [])
 
-  return (
-    <ResultSection results={results} />
+  return error ? <div>Something went wrong</div> : (
+    <React.Fragment>
+      <SearchField />
+      <ResultSection results={results} />
+    </React.Fragment>
   );
 }
 
