@@ -1,19 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Image from './Image';
 
-type ResultSectionProp = { 
-  urls: string[]
+type Result = {
+  url: string;
+  id: string
 }
 
-function ResultSection({ urls }: ResultSectionProp) {
+type ResultSectionProp = { 
+  results: Result[]
+}
+
+function ResultSection({ results }: ResultSectionProp) {
   // TODO: When you get to the data access, iterate over the result from the endpoint
   return (
     <Container> 
       <Grid justify="center" container spacing={3}>
-        {urls.map(url => (<Grid item xs={12} sm={3}>
-          <Image  url={url} />
+        {results.map(result => (<Grid item xs={12} sm={3}>
+          <Image key={result.id} url={result.url} />
         </Grid>))}
       </Grid>
     </Container>
