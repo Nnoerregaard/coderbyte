@@ -7,7 +7,6 @@ export type ImageProps = {
 }
 
 function Image({ url }: ImageProps) {
-  console.log(url)
   return (
     <Grid item xs={12}>
       <img src={url} alt="Probably a cat or something" />

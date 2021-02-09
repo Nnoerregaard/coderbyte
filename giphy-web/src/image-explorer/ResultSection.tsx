@@ -13,7 +13,6 @@ type ResultSectionProp = {
 }
 
 function ResultSection({ results }: ResultSectionProp) {
-  // TODO: When you get to the data access, iterate over the result from the endpoint
   return (
     <Container> 
       <Grid justify="center" container spacing={3}>

@@ -8,7 +8,7 @@ function App() {
   const [error, setError] = useState(); 
 
   useEffect(() => {
-    // TODO: Move out into configuration
+    // TODO: Move out into configuration. Save the value we get from onSearchFieldChange in state and use it as the q parameter 
     axios.get('https://api.giphy.com/v1/stickers/search', 
       { params: { q: "cat", limit: 3, rating: "g", api_key: "1bkG7ky5cmw5SLyvNfElcR1iYVzs38Zq" }}).then((result: any) => {
         console.log(result)
@@ -22,9 +22,14 @@ function App() {
     })
   }, [])
 
+  const onSearchFieldChange = (newValue: string) => {
+    console.log("Not implemented yet")
+  }
+
+  // TODO: Extend this with the text field to display text and the dropdown determining where to show the text. Also make the pagination buttons 
   return error ? <div>Something went wrong</div> : (
     <React.Fragment>
-      <SearchField />
+      <SearchField onDebouncedChange={onSearchFieldChange} />
       <ResultSection results={results} />
     </React.Fragment>
   );
